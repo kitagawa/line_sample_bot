@@ -29,6 +29,8 @@ post '/callback' do
         }
         logger.info message
         response = client.reply_message(event['replyToken'], message)
+        logger.info ENV["LINE_CHANNEL_SECRET"]
+        logger.info ENV["LINE_CHANNEL_TOKEN"]
         logger.info response
       end
     end
