@@ -28,7 +28,8 @@ post '/callback' do
           text: event.message['text']
         }
         logger.info message
-        client.reply_message(event['replyToken'], message)
+        response = client.reply_message(event['replyToken'], message)
+        logger.info response
       end
     end
   }
