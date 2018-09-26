@@ -17,7 +17,7 @@ post '/callback' do
   end
 
   events = client.parse_events_from(body)
-
+  logger.info event
   events.each { |event|
     case event
     when Line::Bot::Event::Message
@@ -27,6 +27,7 @@ post '/callback' do
           type: 'text',
           text: event.message['text']
         }
+        logger.info message
         client.reply_message(event['replyToken'], message)
       end
     end
